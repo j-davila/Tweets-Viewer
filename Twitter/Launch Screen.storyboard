@@ -18,12 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="Twitter_Logo_Blue" translatesAutoresizingMaskIntoConstraints="NO" id="jN7-hR-GQO">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Twitter_Logo_Blue" translatesAutoresizingMaskIntoConstraints="NO" id="jN7-hR-GQO">
                                 <rect key="frame" x="0.0" y="81" width="375" height="401"/>
-                                <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="jN7-hR-GQO" secondAttribute="bottom" constant="185" id="7eO-tb-EyY"/>
+                            <constraint firstItem="jN7-hR-GQO" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="Hyh-vc-WW7"/>
+                            <constraint firstItem="jN7-hR-GQO" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="V3t-ya-erS"/>
+                            <constraint firstItem="jN7-hR-GQO" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="61" id="yaf-PG-tn0"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                     </view>
                 </viewController>
