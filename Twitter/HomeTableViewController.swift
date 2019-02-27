@@ -35,7 +35,7 @@ class HomeTableViewController: UITableViewController {
             for tweet in tweets {
                 self.tweetArray.append(tweet)
             }
-            
+    
             self.tableView.reloadData()
             self.myRefreshControl.endRefreshing()
             
