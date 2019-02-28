@@ -36,6 +36,15 @@ class TweetCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setRetweeted(_isRetweeted:Bool) {
+        reTweeted = _isRetweeted
+        if (reTweeted) {
+            retweetButton.setImage(UIImage(named: "retweet-icon-green"), for: UIControl.State.normal)
+        }else {
+            retweetButton.setImage(UIImage(named: "retweet-icon"), for: UIControl.State.normal)
+        }
+    }
+    
     @IBAction func retweet(_ sender: Any) {
         let toBeRetweeted = !reTweeted
         if (toBeRetweeted) {
@@ -50,15 +59,6 @@ class TweetCell: UITableViewCell {
             }, failure: { (error) in
                 print("Error in unretweeting: \(error)")
             })
-        }
-    }
-    
-    func setRetweeted(_isRetweeted:Bool) {
-        let reTweeted = _isRetweeted
-        if (reTweeted) {
-            retweetButton.setImage(UIImage(named: "retweet-icon-green"), for: UIControl.State.normal)
-        }else {
-            retweetButton.setImage(UIImage(named: "retweet-icon"), for: UIControl.State.normal)
         }
     }
     
