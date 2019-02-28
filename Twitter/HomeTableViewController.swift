@@ -21,6 +21,13 @@ class HomeTableViewController: UITableViewController {
         loadTweet()
         myRefreshControl.addTarget(self, action: #selector(loadTweet), for: .valueChanged)
         tableView.refreshControl = myRefreshControl
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 150
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loadTweet()
     }
     
     @objc func loadTweet(){
@@ -29,7 +36,7 @@ class HomeTableViewController: UITableViewController {
         let myUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         let myParam = ["count": numberOfTweets]
         
-        TwitterAPICaller.client?.getDictionariesRequest(url: myUrl, parameters: myParam, success: { (tweets:[NSDictionary]) in
+        TwitterAPICaller.client?.getDictionariesRequest(url: myUrl, parameters: myParam as [String : Any], success: { (tweets:[NSDictionary]) in
             
             self.tweetArray.removeAll()
             for tweet in tweets {
@@ -50,7 +57,7 @@ class HomeTableViewController: UITableViewController {
         numberOfTweets = numberOfTweets + 20
         let myParam = ["count": numberOfTweets]
         
-        TwitterAPICaller.client?.getDictionariesRequest(url: myUrl, parameters: myParam, success: { (tweets:[NSDictionary]) in
+        TwitterAPICaller.client?.getDictionariesRequest(url: myUrl, parameters: myParam as [String : Any], success: { (tweets:[NSDictionary]) in
             
             self.tweetArray.removeAll()
             for tweet in tweets {
@@ -91,6 +98,9 @@ class HomeTableViewController: UITableViewController {
             cell.profileImageView.image = UIImage(data: imageData)
         }
         
+        cell.setFavorite(_isFavorited: tweetArray[indexPath.row]["favorited"] as! Bool)
+        cell.tweetId = tweetArray[indexPath.row]["id"] as! Int
+        
         return cell
     }
     // MARK: - Table view data source
@@ -104,7 +114,7 @@ class HomeTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return tweetArray.count
     }
-
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
